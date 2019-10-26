@@ -1,0 +1,57 @@
+<html> 
+ <head>
+    <title></title> 
+</head>
+ <body>
+    <p align="center"> 
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body> 
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script>
+ <script>
+var sketchProc = function(processingInstance) {
+with (processingInstance) {
+//START
+size(400, 400); 
+frameRate(120);
+
+var rows = 5;
+var colls = rows;
+var offset = 400/(rows);
+var val = '+';
+
+for (var i = 1; i < rows; i++) {
+    var x = offset * i;
+    fill(15, 158, 49);
+    line(x,0,x,400);
+    line(0,x,400,x);
+}
+
+
+var printCell = function(i, j, val){
+    fill(0, 0, 0);
+    var textLength = (('' + val).length/2)*5;
+    text(val, j * offset + (offset/2)-textLength, i * offset + offset/2-textLength);
+};
+
+var numDiagonal = 0;
+
+for (var i = 0; i < rows; i++) {
+    for(var j  = 0; j < colls; j++) {
+        printCell(i,j,''+i-j);
+    }
+}
+
+
+
+
+
+//END
+}
+};
+
+var canvas = document.getElementById("mycanvas"); 
+var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
